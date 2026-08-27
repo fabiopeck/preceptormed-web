@@ -34,26 +34,33 @@
         }
 
         .wrap {
-            max-width: 520px;
+            max-width: 640px;
             width: 100%;
         }
 
+        .logo-area {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 2vw, 16px);
+            margin-bottom: 48px;
+        }
+
         .logo-symbol {
-            display: block;
-            font-size: 2.5rem;
+            font-size: clamp(2.2rem, 6vw, 3.2rem);
             color: var(--oxford-blue);
-            margin-bottom: 20px;
-            opacity: 0.9;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
         .logo-text {
-            font-family: 'Libre Baskerville', Georgia, serif;
-            font-size: clamp(2.4rem, 8vw, 3.75rem);
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(2rem, 6.5vw, 3.25rem);
             font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
             color: var(--oxford-blue);
-            margin-bottom: 48px;
+            letter-spacing: -1px;
+            line-height: 1;
+            white-space: nowrap;
         }
 
         .logo-text span {
