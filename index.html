@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title>PreceptorMed | Manutenção</title>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --oxford-blue: #002147;
@@ -16,9 +16,7 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            height: 100%;
-        }
+        html, body { height: 100%; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -34,20 +32,24 @@
         }
 
         .wrap {
-            max-width: 640px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Logo igual ao site: brasão à esquerda + nome */
+        .logo-area {
+            display: inline-flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin: 0 auto 52px;
             width: 100%;
         }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: clamp(10px, 2vw, 16px);
-            margin-bottom: 48px;
-        }
-
         .logo-symbol {
-            font-size: clamp(2.2rem, 6vw, 3.2rem);
+            font-size: clamp(3rem, 9vw, 4.8rem);
             color: var(--oxford-blue);
             line-height: 1;
             flex-shrink: 0;
@@ -55,12 +57,13 @@
 
         .logo-text {
             font-family: 'Inter', sans-serif;
-            font-size: clamp(2rem, 6.5vw, 3.25rem);
+            font-size: clamp(2.6rem, 8vw, 4.2rem);
             font-weight: 700;
             color: var(--oxford-blue);
             letter-spacing: -1px;
             line-height: 1;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .logo-text span {
@@ -96,7 +99,6 @@
             font-size: 0.95rem;
             color: var(--muted);
             line-height: 1.7;
-            font-weight: 400;
             max-width: 400px;
             margin: 0 auto;
         }
@@ -109,18 +111,25 @@
             padding: 24px;
             font-size: 0.75rem;
             color: #94A3B8;
-            letter-spacing: 0.02em;
+        }
+
+        @media (max-width: 480px) {
+            .logo-area { gap: 8px; }
+            .logo-symbol { font-size: 2.4rem; }
+            .logo-text { font-size: 2.1rem; }
         }
     </style>
 </head>
 <body>
 
     <main class="wrap">
-        <span class="logo-symbol" aria-hidden="true">⚕</span>
-        <h1 class="logo-text">PRECEPTOR<span>MED</span></h1>
+        <div class="logo-area">
+            <span class="logo-symbol" aria-hidden="true">⚕</span>
+            <div class="logo-text">PRECEPTOR<span>MED</span></div>
+        </div>
         <div class="divider"></div>
         <p class="status">Plataforma</p>
-        <h2 class="title">Manutenção</h2>
+        <h1 class="title">Manutenção</h1>
         <p class="lead">Estamos preparando uma nova experiência. Retornaremos em breve.</p>
     </main>
 
