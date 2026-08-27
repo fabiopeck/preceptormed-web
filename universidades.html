@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universidades | PreceptorMed Technologies Inc.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oxford-blue: #002147;
+            --med-blue: #0056b3;
+            --soft-white: #F8FAFC;
+            --gold-accent: #B8860B;
+            --text-dark: #1A1A1A;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: #FFF; line-height: 1.8; }
+
+        header {
+            background: rgba(255, 255, 255, 0.98); padding: 20px 8%; display: flex; justify-content: space-between; 
+            align-items: center; position: fixed; width: 100%; top: 0; z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05); backdrop-filter: blur(10px);
+        }
+        .logo-area { display: flex; align-items: center; gap: 12px; }
+        .logo-symbol { font-size: 1.8rem; color: var(--oxford-blue); }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--oxford-blue); letter-spacing: -1px; }
+        .logo-text span { color: var(--med-blue); font-weight: 400; }
+
+        nav ul { display: flex; list-style: none; gap: 30px; align-items: center; }
+        nav ul li a { text-decoration: none; color: var(--oxford-blue); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; }
+        .btn-nav { background: var(--oxford-blue); color: white !important; padding: 10px 22px; border-radius: 2px; }
+
+        .uni-hero {
+            padding: 280px 8% 180px;
+            background: linear-gradient(rgba(0, 33, 71, 0.85), rgba(0, 33, 71, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        .uni-hero h1 { font-family: 'Libre Baskerville', serif; font-size: 3.5rem; margin-bottom: 25px; line-height: 1.1; }
+
+        .details-section { padding: 80px 8%; }
+        .feature-row { display: flex; gap: 80px; align-items: center; }
+        .feature-row.reverse { flex-direction: row-reverse; }
+        
+        .feature-text { flex: 1.2; }
+        .feature-text h3 { font-family: 'Libre Baskerville', serif; font-size: 2.2rem; color: var(--oxford-blue); margin-bottom: 25px; }
+        
+        .feature-image { flex: 0.8; }
+        .feature-image img { width: 100%; border-radius: 4px; box-shadow: 20px 20px 0 var(--soft-white); }
+
+        .loi-section { background: var(--soft-white); padding: 100px 8%; }
+        .loi-card { 
+            background: white; padding: 60px; border-top: 5px solid var(--oxford-blue); 
+            max-width: 850px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+        .loi-content { font-size: 1rem; color: #333; line-height: 1.8; text-align: justify; }
+        .loi-field { color: var(--med-blue); border-bottom: 1px solid #ccc; font-weight: 600; padding: 0 5px; }
+        
+        .btn-loi { display: block; width: fit-content; margin: 40px auto 0; background: var(--oxford-blue); color: white; text-decoration: none; padding: 18px 35px; font-weight: 700; text-transform: uppercase; }
+
+        footer { background: #001529; color: #94A3B8; padding: 60px 8%; text-align: center; font-size: 0.8rem; }
+    </style>
+    <link rel="stylesheet" href="widgets.css">
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo-area">
+        <span class="logo-symbol">⚕</span>
+        <div class="logo-text">PRECEPTOR<span>MED</span></div>
+    </a>
+
+    <nav>
+        <ul>
+            <li class="nav-item">
+                <span class="nav-label">Empresa</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Sobre a PreceptorMed</h4>
+                            <p>Tecnologia e preceptoria sênior para elevar a performance acadêmica de cursos de medicina no Brasil.</p>
+                            <a href="quem-somos.html">Conhecer a empresa</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Institucional</h5>
+                            <a href="quem-somos.html">Quem Somos<small>História, missão e valores</small></a>
+                            <a href="metodologia.html">Metodologia<small>Padrões Harvard & Toronto</small></a>
+                            <a href="empresa.html">Soluções Corporativas<small>Blindagem institucional</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Governança</h5>
+                            <a href="compliance.html">Compliance<small>Segurança e conformidade</small></a>
+                            <a href="contatos.html">Contato<small>Fale com nossa equipe</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Marca</h5>
+                            <a href="mailto:contato@preceptormed.com">Imprensa<small>contato@preceptormed.com</small></a>
+                            <a href="faq.html">Perguntas Frequentes<small>Dúvidas institucionais</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">Universidades</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Para Reitorias e Mantenedoras</h4>
+                            <p>Dashboards, rede de preceptores e dossiês técnicos para blindagem acadêmica e elevação de notas MEC.</p>
+                            <a href="universidades.html">Ver soluções</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Plataforma</h5>
+                            <a href="universidades.html">Dashboard Reitoria 360º<small>Visão executiva em tempo real</small></a>
+                            <a href="preceptores.html">Rede de Preceptores<small>Médicos RQE +5 anos</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Resultados</h5>
+                            <a href="metodologia.html">Intervenção Pedagógica<small>Internato e ENAMED</small></a>
+                            <a href="compliance.html">Conformidade MEC<small>Dossiês e relatórios</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Alunos</h5>
+                            <a href="cadastre-se.html">Portal do Aluno<small>Acesso à plataforma</small></a>
+                            <a href="faq.html">Modelos de Parceria<small>B2B institucional</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">Médicos</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Portal do Preceptor</h4>
+                            <p>Ferramentas de supervisão, compliance e benefícios exclusivos para médicos preceptores sêniores.</p>
+                            <a href="medicos.html">Área do médico</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Operação</h5>
+                            <a href="medicos.html">Dashboard Preceptor 360º<small>Gestão de internos</small></a>
+                            <a href="preceptores.html">Ser Preceptor<small>Requisitos e adesão</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Segurança</h5>
+                            <a href="compliance.html">Compliance & Segurança<small>Protocolos e LGPD</small></a>
+                            <a href="faq.html">Clube de Benefícios<small>Vantagens exclusivas</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Suporte</h5>
+                            <a href="contatos.html">Central de Ajuda<small>Atendimento ao preceptor</small></a>
+                            <a href="cadastre-se.html">Cadastro Médico<small>Entrar na rede</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">FAQ</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Central de Ajuda</h4>
+                            <p>Respostas rápidas sobre parcerias, operação da plataforma e canais de ouvidoria.</p>
+                            <a href="faq.html">Abrir FAQ completo</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Conteúdo</h5>
+                            <a href="faq.html">Dúvidas Frequentes<small>Universidades e médicos</small></a>
+                            <a href="empresa.html">Modelos de Parceria<small>Contratos e escopos</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Relacionamento</h5>
+                            <a href="contatos.html">Ouvidoria<small>Canal formal de escuta</small></a>
+                            <a href="contatos.html">Fale Conosco<small>Comercial e suporte</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Legal</h5>
+                            <a href="compliance.html">Termos e Privacidade<small>Políticas institucionais</small></a>
+                            <a href="mailto:contato@preceptormed.com">Compliance<small>compliance@preceptormed.com</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="auth-buttons">
+        <a href="cadastre-se.html" class="btn-cadastro">Cadastro</a>
+        <a href="cadastre-se.html" class="btn-login-main">Login</a>
+    </div>
+</header>
+
+<section class="uni-hero">
+    <h1>Soluções Institucionais para o Ensino Médico.</h1>
+    <p>Garantindo conformidade com o MEC e excelência acadêmica para os novos desafios do ENAMED.</p>
+</section>
+
+<section class="details-section">
+    <div class="feature-row">
+        <div class="feature-text">
+            <h3>Gestão de Performance e avaliações ENAMED Notas 1 e 2</h3>
+            <p>A PreceptorMed atua na dor latente das Universidades, visando a qualidade do internato. Com nossa camada de tecnologia e corpo docente especializado, buscamos auxiliar a instituição contra riscos regulatórios impostos pelo Ministério da Educação (MEC), por meio do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep). Estruturamos este modelo para que cada hora de preceptoria seja auditável e documentada, elevando a percepção de valor dos alunos e a segurança jurídica da faculdade.</p>
+        </div>
+        <div class="feature-image">
+            <img src="https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&w=800&q=80" alt="Preceptor orientando alunos em ambiente de estudo clínico">
+        </div>
+    </div>
+</section>
+
+<section class="details-section" style="background-color: #fafafa;">
+    <div class="feature-row reverse">
+        <div class="feature-text">
+            <h3>Auditoria Digital e Compliance Acadêmico</h3>
+            <p>Nossa plataforma SaaS permite o monitoramento em tempo real das atividades práticas. Universidades parceiras, possuem acesso a dashboards exclusivos que comprovam a presença e a qualidade da entrega do preceptor.</p>
+            <p>Este nível de rastreabilidade e uniformidade é um diferencial crucial em processos de recredenciamento, transformando dados brutos em evidências de excelência para os avaliadores do MEC. A implementação de modelos de preceptoria inspirados em instituições como Harvard (EUA) e Toronto (Canadá) em universidades Brasileiras atua diretamente na melhoria dos indicadores do ENAMED/MEC ao elevar o rigor da supervisão clínica e a autonomia do estudante.
+Reflexos Positivos nas Requisições do MEC com a exigência para que os cursos de medicina comprovem a qualidade na formação prática e a segurança do paciente. Os modelos internacionais ajudam a atender esses critérios através de: Melhoria no Conceito ENAMED: A supervisão mais próxima e o feedback estruturado (típicos de Harvard) preparam melhor o aluno para questões de raciocínio clínico complexo, elevando as notas de 1-2 para 4-5.</p>
+        </div>
+       <div class="feature-image">
+    <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?auto=format&fit=crop&w=800&q=80" 
+         alt="Médico preceptor ensinando alunos no beira leito"
+         style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 20px 20px 0 var(--soft-white);">
+</div>
+</section>
+
+
+
+<section class="details-section">
+    <div class="feature-row">
+        <div class="feature-text">
+            <h3>Por que os modelos estrangeiros são considerados "melhores" para a regulação ENAMED atual?</h3>
+            <p>Eles são considerados superiores no contexto regulatório porque padronizam a qualidade. Enquanto no Brasil a qualidade varia drasticamente entre instituições, os modelos americano e canadense utilizam órgãos que estabelecem requisitos uniformes para todos os centros de treinamento. Isso garante que o médico formado tenha um nível mínimo de competência técnica e segurança, exatamente o que o ENAMED busca filtrar para reduzir os 35% de formandos que hoje não atingem a proficiência mínima. A PreceptorMed atua na dor latente das Universidades, visando a qualidade do internato. Com nossa camada de tecnologia e corpo docente centralizado e especializado, buscamos auxiliar a instituição contra riscos regulatórios impostos pelo Ministério da Educação (MEC), por meio do Instituto Nacional de Estudos e Pesquisas Educacionais Anísio Teixeira (Inep). Estruturamos este modelo para que cada hora de preceptoria seja auditável e documentada, elevando a percepção de valor dos alunos e a segurança jurídica da faculdade.</p>
+        </div>
+        <div class="feature-image">
+    <img src="https://images.unsplash.com/photo-1551601651-2a8555f1a136?auto=format&fit=crop&w=800&q=80" 
+         alt="Preceptor médico orientando alunos de medicina no internato"
+         style="width: 100%; max-width: 800px; height: auto; border-radius: 8px; box-shadow: 20px 20px 0 var(--soft-white);">
+</div>
+    </div>
+</section>
+<section class="details-section" style="padding-top: 0;">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <h2 style="font-family: 'Libre Baskerville', serif; color: var(--oxford-blue); font-size: 2rem;">
+            Diferenciais Estratégicos: Modelo Brasileiro (Tradicional) vs. Modelo Harvard/Toronto (Preceptoria)
+        </h2>
+        <p style="max-width: 800px; margin: 20px auto; color: #666;">
+            A implementação do modelo inspirado em Harvard e Toronto atua diretamente na conversão de indicadores ENAMED 1-2 para níveis de excelência 4-5.
+        </p>
+    </div>
+
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.95rem;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+        .comparison-table th {
+            background-color: var(--oxford-blue);
+            color: white;
+            padding: 20px;
+            text-align: left;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+        .comparison-table tr:hover {
+            background-color: #fcfcfc;
+        }
+        .col-feature {
+            font-weight: 700;
+            color: var(--oxford-blue);
+            width: 20%;
+            background-color: var(--soft-white);
+        }
+        .col-traditional {
+            width: 40%;
+            color: #666;
+        }
+        .col-international {
+            width: 40%;
+            color: var(--text-dark);
+            border-left: 3px solid var(--med-blue);
+            font-weight: 500;
+        }
+        .highlight-text {
+            color: var(--med-blue);
+            font-weight: 600;
+        }
+    </style>
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th class="col-feature">Característica</th>
+                <th class="col-traditional">Modelo Brasileiro (Tradicional)</th>
+                <th class="col-international">Modelo Harvard/Toronto (Preceptoria)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="col-feature">Supervisão</td>
+                <td>Frequentemente mais flexível; o preceptor divide o tempo com múltiplas tarefas assistenciais.</td>
+                <td><span class="highlight-text">Rígida e Dedicada:</span> O preceptor acompanha procedimentos e discussões de perto, com feedback imediato.</td>
+            </tr>
+            <tr>
+                <td class="col-feature">Foco da Formação</td>
+                <td>Ênfase em carga horária e atendimento em grande volume (fluxo SUS).</td>
+                <td><span class="highlight-text">Baseado em Competências:</span> Avanço condicionado ao domínio de habilidades específicas, auditado por metas.</td>
+            </tr>
+            <tr>
+                <td class="col-feature">Pesquisa</td>
+                <td>Muitas vezes dissociada da prática clínica diária dos estudantes.</td>
+                <td><span class="highlight-text">Integrada:</span> Alunos incentivados com acesso facilitado a pesquisas e publicações durante o treinamento.</td>
+            </tr>
+            <tr>
+                <td class="col-feature">Avaliação</td>
+                <td>Baseada em provas teóricas pontuais e desempenho geral subjetivo.</td>
+                <td><span class="highlight-text">Holística e Rastreável:</span> Considera currículo, ética, comunicação e evidências de desempenho clínico.</td>
+            </tr>
+            <tr>
+                <td class="col-feature">Impacto MEC</td>
+                <td>Risco regulatório em notas 1 e 2 por falta de evidência de supervisão.</td>
+                <td><span class="highlight-text">Conformidade Total:</span> Documentação auditável que eleva o conceito institucional para 4 ou 5.</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="loi-section">
+    <div style="text-align: center; margin-bottom: 50px;">
+        <span style="color: var(--med-blue); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px;">Documentação Oficial</span>
+        <h2 style="font-family: 'Libre Baskerville', serif; color: var(--oxford-blue); font-size: 2.2rem; margin-top: 10px;">Protocolo de Intenção Estratégica</h2>
+        <p style="color: #666; margin-top: 15px;">Formalize o interesse da sua IES para reserva de rede e prioridade na implantação 2026.</p>
+    </div>
+
+    <div class="loi-card">
+        <div class="loi-content" id="loi-document">
+            <p>À <strong>PreceptorMed Technologies Inc.</strong>,</p><br>
+            <p>A instituição <input type="text" placeholder="Digite o Nome da Universidade" style="border: none; border-bottom: 1px solid var(--med-blue); width: 300px; font-family: inherit; font-size: 1rem; color: var(--med-blue); outline: none;">, devidamente representada, manifesta formalmente o interesse em avaliar a parceria estratégica para provimento de preceptoria especializada no ciclo de internato.</p><br>
+            <p>Entendemos que a implementação visa a melhoria dos índices no <strong>ENAMED</strong> e a adequação aos critérios de avaliação do <strong>MEC</strong>, através da plataforma SaaS e da curadoria de médicos preceptores com RQE.</p><br>
+            <p>Este documento formaliza o interesse para fins de planejamento operacional e reserva de rede de preceptores para o ciclo <strong>2026</strong>.</p><br><br>
+            
+            <div style="text-align: center; border-top: 1px solid #eee; pt-20">
+                <p style="font-size: 0.8rem; color: #999; margin-top: 20px;">Assinatura Digital via GOV.BR / ICP-Brasil</p>
+                <div style="width: 200px; height: 80px; border: 2px dashed #ddd; margin: 10px auto; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 0.7rem;">
+                    ESPAÇO PARA ASSINATURA
+                </div>
+                <strong>Diretoria Acadêmica / Reitoria</strong>
+            </div>
+        </div>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
+            <a href="#" class="btn-loi" style="margin: 0; background: var(--med-blue);">1. Gerar PDF para Assinar</a>
+            <a href="#" class="btn-loi" style="margin: 0; background: #28a745; border: none;">2. Upload Termo Assinado</a>
+        </div>
+        <p style="text-align: center; font-size: 0.7rem; color: #999; margin-top: 15px;">*O documento assinado será arquivado em ambiente seguro de Compliance da PreceptorMed.</p>
+    </div>
+<div style="max-width: 850px; margin: 30px auto; padding: 25px; border-left: 5px solid var(--med-blue); background: #f8fbff;">
+    <p style="font-size: 0.95rem; color: #333; line-height: 1.6;">
+        <strong style="color: var(--med-blue);">Nota de Compliance:</strong> Após a análise e aceite deste Protocolo de Intenção Estratégica, a 
+        <strong style="color: var(--med-blue);">&copy;PreceptorMed Technologies Inc.</strong> Submeterá o instrumento contratual definitivo, 
+        contendo os detalhamentos operacionais da plataforma e a proposta comercial correspondente, para a análise e o rito de aceite do 
+        <strong style="color: var(--med-blue);">Ilustre Corpo de Reitoria Acadêmica</strong>.
+    </p>
+</div>
+<footer>
+    <div class="mega-footer-top">
+        <div class="footer-brand">
+            <h4>PRECEPTOR<span>MED</span></h4>
+            <p>©2026 Preceptor Technologies Inc. Líder em soluções de preceptoria médica de elite para universidades e redes hospitalares de ensino.</p>
+            <div class="footer-address">
+                <strong>Sede Administrativa</strong>
+                Belo Horizonte, Rua Alagoas, 1000 · Savassi<br>
+                contato@preceptormed.com<br>
+                CNPJ 55.444.333/0001-22
+            </div>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Empresa</h5>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="metodologia.html">Metodologia</a>
+            <a href="empresa.html">Soluções Corporativas</a>
+            <a href="compliance.html">Compliance</a>
+            <a href="contatos.html">Contato</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Universidades</h5>
+            <a href="universidades.html">Dashboard Reitoria 360º</a>
+            <a href="preceptores.html">Rede de Preceptores</a>
+            <a href="metodologia.html">Intervenção Pedagógica</a>
+            <a href="compliance.html">Conformidade MEC</a>
+            <a href="faq.html">Modelos de Parceria</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Médicos</h5>
+            <a href="medicos.html">Dashboard Preceptor</a>
+            <a href="preceptores.html">Ser Preceptor</a>
+            <a href="compliance.html">Segurança & LGPD</a>
+            <a href="cadastre-se.html">Cadastro Médico</a>
+            <a href="faq.html">Clube de Benefícios</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Suporte</h5>
+            <a href="faq.html">FAQ</a>
+            <a href="contatos.html">Ouvidoria</a>
+            <a href="contatos.html">Central de Ajuda</a>
+            <a href="mailto:contato@preceptormed.com">Imprensa</a>
+            <a href="cadastre-se.html">Login / Cadastro</a>
+        </div>
+    </div>
+
+    <div class="mega-footer-bottom">
+        <span>©2026 PreceptorMed Technologies Inc. Excelência em Gestão Acadêmica Médica.</span>
+        <div class="legal-links">
+            <a href="compliance.html">Termos de Uso B2B</a>
+            <a href="compliance.html">Privacidade de Dados</a>
+            <a href="compliance.html">Relatórios MEC</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="widgets.js" defer></script>
+</body>
+</html>

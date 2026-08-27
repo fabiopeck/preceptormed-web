@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PreceptorMed | Inteligência Estratégica para Universidades</title>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oxford-blue: #002147;
+            --med-blue: #0056b3;
+            --soft-white: #F8FAFC;
+            --gold-accent: #B8860B;
+            --neon-green: #39FF14;
+            --text-dark: #1A1A1A;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: #FFF; line-height: 1.6; padding-top: 90px; }
+
+        /* ========== HEADER + MEGA MENU ========== */
+        header {
+            background: #FFF;
+            padding: 0 4%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            height: 90px;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            justify-self: start;
+        }
+        .logo-symbol { font-size: 1.8rem; color: var(--oxford-blue); }
+        .logo-text { font-size: 1.5rem; font-weight: 700; color: var(--oxford-blue); letter-spacing: -1px; }
+        .logo-text span { color: var(--med-blue); font-weight: 400; }
+
+        nav {
+            justify-self: center;
+            height: 100%;
+        }
+        nav > ul {
+            display: flex;
+            list-style: none;
+            gap: 4px;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+        }
+        .nav-item {
+            position: static;
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+        .nav-label {
+            color: var(--oxford-blue);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0 18px;
+            letter-spacing: 0.4px;
+            cursor: default;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border-bottom: 3px solid transparent;
+            transition: var(--transition);
+        }
+        .nav-item:hover .nav-label {
+            color: var(--med-blue);
+            border-bottom-color: var(--med-blue);
+        }
+
+        /* Mega panel */
+        .mega-menu {
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 90px;
+            background: #FFF;
+            box-shadow: 0 24px 48px rgba(0,33,71,0.12);
+            border-top: 1px solid #E8EEF5;
+            padding: 48px 6%;
+            z-index: 999;
+        }
+        .nav-item:hover .mega-menu { display: block; }
+
+        .mega-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 1fr 1fr;
+            gap: 40px;
+        }
+        .mega-intro h4 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.25rem;
+            color: var(--oxford-blue);
+            margin-bottom: 12px;
+        }
+        .mega-intro p {
+            font-size: 0.9rem;
+            color: #64748B;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .mega-intro a {
+            color: var(--med-blue);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            letter-spacing: 0.5px;
+        }
+        .mega-col h5 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #94A3B8;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+        .mega-col a {
+            display: block;
+            text-decoration: none;
+            color: var(--oxford-blue);
+            padding: 10px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-bottom: 1px solid #F1F5F9;
+            transition: var(--transition);
+        }
+        .mega-col a:hover { color: var(--med-blue); padding-left: 6px; }
+        .mega-col a small {
+            display: block;
+            font-size: 0.75rem;
+            color: #94A3B8;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            justify-self: end;
+        }
+        .btn-cadastro {
+            text-decoration: none;
+            color: var(--oxford-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: var(--transition);
+        }
+        .btn-cadastro:hover { color: var(--med-blue); }
+        .btn-login-main {
+            text-decoration: none;
+            background: var(--oxford-blue);
+            color: #FFF;
+            padding: 12px 25px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+        .btn-login-main:hover { transform: scale(1.05); }
+
+        /* ========== HERO ========== */
+        .hero {
+            padding: 80px 8%;
+            background: linear-gradient(rgba(0,33,71,0.02), rgba(0,33,71,0.05));
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            min-height: 70vh;
+        }
+        .hero-content { flex: 1.2; }
+        .hero-tag {
+            background: var(--oxford-blue);
+            color: white;
+            padding: 6px 15px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            border-radius: 2px;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .hero-content h1 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 3.2rem;
+            color: var(--oxford-blue);
+            line-height: 1.2;
+            margin-bottom: 30px;
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #444;
+            margin-bottom: 40px;
+            border-left: 4px solid var(--gold-accent);
+            padding-left: 25px;
+        }
+        .hero-image { flex: 0.8; }
+        .hero-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 20px 20px 0 var(--oxford-blue);
+        }
+
+        /* ========== STRATEGY ========== */
+        .strategy-section { padding: 100px 8%; background: #FFF; }
+        .strategy-header { text-align: center; max-width: 900px; margin: 0 auto 80px; }
+        .strategy-header h2 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.5rem;
+            color: var(--oxford-blue);
+            margin-bottom: 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 80px;
+            text-align: center;
+        }
+        .stat-item h3 {
+            font-size: 2.5rem;
+            color: var(--med-blue);
+            font-family: 'Libre Baskerville', serif;
+        }
+        .stat-item p {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            color: #666;
+        }
+        .intervention-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .int-card {
+            padding: 50px;
+            border: 1px solid #EEE;
+            border-top: 5px solid var(--oxford-blue);
+            transition: var(--transition);
+        }
+        .int-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+            transform: translateY(-10px);
+        }
+        .int-card h4 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.5rem;
+            color: var(--oxford-blue);
+            margin-bottom: 20px;
+        }
+        .int-card ul { list-style: none; margin-top: 20px; }
+        .int-card ul li {
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: #555;
+            display: flex;
+            gap: 10px;
+        }
+        .int-card ul li::before { content: "•"; color: var(--gold-accent); font-weight: bold; }
+
+        .cta-box {
+            margin-top: 80px;
+            background: var(--soft-white);
+            padding: 60px;
+            text-align: center;
+            border-radius: 4px;
+            border: 1px solid #E2E8F0;
+        }
+        .btn-consultor {
+            background: var(--neon-green);
+            color: var(--oxford-blue);
+            padding: 20px 40px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            display: inline-block;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .btn-consultor:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+        }
+
+        /* ========== 4 NOVAS SEÇÕES ========== */
+        .section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--med-blue);
+            margin-bottom: 14px;
+            display: block;
+        }
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2.2rem;
+            color: var(--oxford-blue);
+            margin-bottom: 16px;
+            line-height: 1.25;
+        }
+        .section-lead {
+            font-size: 1.05rem;
+            color: #64748B;
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* 1. Metodologia Global */
+        .sec-metodologia {
+            padding: 100px 8%;
+            background: var(--oxford-blue);
+            color: #FFF;
+        }
+        .sec-metodologia .section-label { color: var(--gold-accent); }
+        .sec-metodologia .section-title { color: #FFF; }
+        .sec-metodologia .section-lead { color: #94A3B8; margin-bottom: 50px; }
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .method-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 32px 28px;
+            transition: var(--transition);
+        }
+        .method-card:hover { background: rgba(255,255,255,0.1); transform: translateY(-4px); }
+        .method-num {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 2rem;
+            color: var(--gold-accent);
+            margin-bottom: 16px;
+        }
+        .method-card h4 { font-size: 1.05rem; margin-bottom: 10px; color: #FFF; }
+        .method-card p { font-size: 0.88rem; color: #94A3B8; line-height: 1.6; }
+
+        /* 2. Dashboard 360 */
+        .sec-dashboard {
+            padding: 100px 8%;
+            background: #FFF;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .dash-panel {
+            background: linear-gradient(145deg, #001529 0%, #002147 100%);
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 16px 16px 0 #E2E8F0;
+        }
+        .dash-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .dash-row:last-child { border-bottom: none; }
+        .dash-row span { color: #94A3B8; font-size: 0.85rem; }
+        .dash-row strong { color: #FFF; font-size: 1.1rem; }
+        .dash-row .ok { color: var(--neon-green); }
+        .dash-features { list-style: none; margin-top: 32px; }
+        .dash-features li {
+            padding: 12px 0 12px 28px;
+            position: relative;
+            font-size: 0.95rem;
+            color: #475569;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .dash-features li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 10px;
+            height: 10px;
+            background: var(--med-blue);
+            border-radius: 1px;
+        }
+
+        /* 3. Rede de Preceptores */
+        .sec-preceptores {
+            padding: 100px 8%;
+            background: var(--soft-white);
+            text-align: center;
+        }
+        .sec-preceptores .section-lead { margin: 0 auto 50px; }
+        .preceptor-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            text-align: left;
+        }
+        .preceptor-card {
+            background: #FFF;
+            padding: 40px 36px;
+            border: 1px solid #E2E8F0;
+            transition: var(--transition);
+        }
+        .preceptor-card:hover {
+            box-shadow: 0 16px 40px rgba(0,33,71,0.08);
+            border-color: transparent;
+        }
+        .preceptor-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--oxford-blue);
+            color: #FFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 22px;
+        }
+        .preceptor-card h4 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.25rem;
+            color: var(--oxford-blue);
+            margin-bottom: 12px;
+        }
+        .preceptor-card p { font-size: 0.92rem; color: #64748B; line-height: 1.65; }
+
+        /* 4. Conformidade MEC */
+        .sec-conformidade {
+            padding: 100px 8%;
+            background: #FFF;
+        }
+        .conf-wrap {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .conf-list { list-style: none; margin-top: 36px; }
+        .conf-list li {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 20px;
+            padding: 22px 0;
+            border-bottom: 1px solid #F1F5F9;
+        }
+        .conf-list .badge {
+            width: 56px;
+            height: 56px;
+            background: var(--soft-white);
+            color: var(--oxford-blue);
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #E2E8F0;
+        }
+        .conf-list h4 { color: var(--oxford-blue); font-size: 1.05rem; margin-bottom: 6px; }
+        .conf-list p { font-size: 0.88rem; color: #64748B; }
+        .conf-aside {
+            background: linear-gradient(160deg, var(--oxford-blue), #003366);
+            color: #FFF;
+            padding: 48px 40px;
+            min-height: 100%;
+        }
+        .conf-aside h3 {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .conf-aside p { color: #94A3B8; font-size: 0.95rem; margin-bottom: 28px; line-height: 1.7; }
+        .conf-aside .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        .conf-aside .metric strong { color: var(--neon-green); }
+
+        /* ========== MEGA FOOTER ========== */
+        footer {
+            background: #001529;
+            color: #94A3B8;
+            padding: 0;
+            border-top: 5px solid var(--med-blue);
+        }
+        .mega-footer-top {
+            padding: 70px 6% 50px;
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1fr 1fr;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-brand h4 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 14px;
+            letter-spacing: -0.5px;
+        }
+        .footer-brand h4 span { color: var(--med-blue); }
+        .footer-brand > p {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 28px;
+            max-width: 280px;
+        }
+        .footer-address {
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+        .footer-address strong {
+            display: block;
+            color: #FFF;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+        .mega-footer-col h5 {
+            color: #FFF;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 22px;
+            font-weight: 700;
+        }
+        .mega-footer-col a,
+        .mega-footer-col span {
+            display: block;
+            font-size: 0.88rem;
+            color: #94A3B8;
+            text-decoration: none;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+        .mega-footer-col a:hover { color: #FFF; padding-left: 4px; }
+
+        .mega-footer-mid {
+            border-top: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            padding: 36px 6%;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .footer-pill {
+            background: rgba(255,255,255,0.04);
+            padding: 20px 22px;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .footer-pill strong {
+            display: block;
+            color: #FFF;
+            font-size: 0.85rem;
+            margin-bottom: 4px;
+        }
+        .footer-pill span { font-size: 0.8rem; color: #64748B; }
+
+        .mega-footer-bottom {
+            padding: 28px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            max-width: 1400px;
+            margin: 0 auto;
+            font-size: 0.8rem;
+        }
+        .mega-footer-bottom .legal-links {
+            display: flex;
+            gap: 24px;
+        }
+        .mega-footer-bottom a {
+            color: #64748B;
+            text-decoration: none;
+        }
+        .mega-footer-bottom a:hover { color: #FFF; }
+
+        @media (max-width: 1100px) {
+            header { grid-template-columns: auto 1fr auto; padding: 0 3%; }
+            .mega-inner { grid-template-columns: 1fr 1fr; }
+            .method-grid { grid-template-columns: 1fr 1fr; }
+            .mega-footer-top { grid-template-columns: 1fr 1fr 1fr; }
+            .mega-footer-mid { grid-template-columns: 1fr 1fr; }
+            .sec-dashboard, .conf-wrap { grid-template-columns: 1fr; }
+            .preceptor-grid { grid-template-columns: 1fr; }
+            .intervention-grid { grid-template-columns: 1fr; }
+            .hero { flex-direction: column; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 720px) {
+            nav { display: none; }
+            header { display: flex; justify-content: space-between; }
+            .mega-footer-top { grid-template-columns: 1fr; }
+            .method-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+    <link rel="stylesheet" href="widgets.css">
+</head>
+<body>
+
+<header>
+    <a href="index.html" class="logo-area">
+        <span class="logo-symbol">⚕</span>
+        <div class="logo-text">PRECEPTOR<span>MED</span></div>
+    </a>
+
+    <nav>
+        <ul>
+            <li class="nav-item">
+                <span class="nav-label">Empresa</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Sobre a PreceptorMed</h4>
+                            <p>Tecnologia e preceptoria sênior para elevar a performance acadêmica de cursos de medicina no Brasil.</p>
+                            <a href="quem-somos.html">Conhecer a empresa</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Institucional</h5>
+                            <a href="quem-somos.html">Quem Somos<small>História, missão e valores</small></a>
+                            <a href="metodologia.html">Metodologia<small>Padrões Harvard & Toronto</small></a>
+                            <a href="empresa.html">Soluções Corporativas<small>Blindagem institucional</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Governança</h5>
+                            <a href="compliance.html">Compliance<small>Segurança e conformidade</small></a>
+                            <a href="contatos.html">Contato<small>Fale com nossa equipe</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Marca</h5>
+                            <a href="mailto:contato@preceptormed.com">Imprensa<small>contato@preceptormed.com</small></a>
+                            <a href="faq.html">Perguntas Frequentes<small>Dúvidas institucionais</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">Universidades</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Para Reitorias e Mantenedoras</h4>
+                            <p>Dashboards, rede de preceptores e dossiês técnicos para blindagem acadêmica e elevação de notas MEC.</p>
+                            <a href="universidades.html">Ver soluções</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Plataforma</h5>
+                            <a href="universidades.html">Dashboard Reitoria 360º<small>Visão executiva em tempo real</small></a>
+                            <a href="preceptores.html">Rede de Preceptores<small>Médicos RQE +5 anos</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Resultados</h5>
+                            <a href="metodologia.html">Intervenção Pedagógica<small>Internato e ENAMED</small></a>
+                            <a href="compliance.html">Conformidade MEC<small>Dossiês e relatórios</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Alunos</h5>
+                            <a href="cadastre-se.html">Portal do Aluno<small>Acesso à plataforma</small></a>
+                            <a href="faq.html">Modelos de Parceria<small>B2B institucional</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">Médicos</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Portal do Preceptor</h4>
+                            <p>Ferramentas de supervisão, compliance e benefícios exclusivos para médicos preceptores sêniores.</p>
+                            <a href="medicos.html">Área do médico</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Operação</h5>
+                            <a href="medicos.html">Dashboard Preceptor 360º<small>Gestão de internos</small></a>
+                            <a href="preceptores.html">Ser Preceptor<small>Requisitos e adesão</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Segurança</h5>
+                            <a href="compliance.html">Compliance & Segurança<small>Protocolos e LGPD</small></a>
+                            <a href="faq.html">Clube de Benefícios<small>Vantagens exclusivas</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Suporte</h5>
+                            <a href="contatos.html">Central de Ajuda<small>Atendimento ao preceptor</small></a>
+                            <a href="cadastre-se.html">Cadastro Médico<small>Entrar na rede</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="nav-item">
+                <span class="nav-label">FAQ</span>
+                <div class="mega-menu">
+                    <div class="mega-inner">
+                        <div class="mega-intro">
+                            <h4>Central de Ajuda</h4>
+                            <p>Respostas rápidas sobre parcerias, operação da plataforma e canais de ouvidoria.</p>
+                            <a href="faq.html">Abrir FAQ completo</a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Conteúdo</h5>
+                            <a href="faq.html">Dúvidas Frequentes<small>Universidades e médicos</small></a>
+                            <a href="empresa.html">Modelos de Parceria<small>Contratos e escopos</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Relacionamento</h5>
+                            <a href="contatos.html">Ouvidoria<small>Canal formal de escuta</small></a>
+                            <a href="contatos.html">Fale Conosco<small>Comercial e suporte</small></a>
+                        </div>
+                        <div class="mega-col">
+                            <h5>Legal</h5>
+                            <a href="compliance.html">Termos e Privacidade<small>Políticas institucionais</small></a>
+                            <a href="mailto:contato@preceptormed.com">Compliance<small>compliance@preceptormed.com</small></a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="auth-buttons">
+        <a href="cadastre-se.html" class="btn-cadastro">Cadastro</a>
+        <a href="cadastre-se.html" class="btn-login-main">Login</a>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-tag">GLOBAL MEDICAL STANDARDS</span>
+        <h1>Excelência Acadêmica sob o 'Olhar do Mestre'.</h1>
+        <p>"Estamos trazendo para o Brasil o modelo de <strong>Clinical Preceptoring</strong> utilizado em Harvard e na Universidade de Toronto. Onde o internato falha por falta de braços, a PreceptorMed entra com tecnologia e a expertise sênior."</p>
+    </div>
+    <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80" alt="Medical Mentoring">
+    </div>
+</section>
+
+<section class="strategy-section">
+    <div class="strategy-header">
+        <h2>Inteligência Estratégica para Universidades</h2>
+        <p>A PreceptorMed é desenvolvida pelo Grupo da ©2026 Preceptor Technologies Inc. Especializada em blindagem institucional e elevação de performance acadêmica através de preceptoria de alta complexidade.</p>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-item"><h3>99</h3><p>Instituições Monitoradas</p></div>
+        <div class="stat-item"><h3>+5 Anos</h3><p>Experiência dos Preceptores</p></div>
+        <div class="stat-item"><h3>100%</h3><p>Foco em Conformidade MEC</p></div>
+    </div>
+
+    <div class="intervention-grid">
+        <div class="int-card">
+            <h4>Unidade de Intervenção Pedagógica</h4>
+            <p>Atuamos em cursos de medicina com avaliações críticas (1 e 2 no MEC), implementando uma nova camada de preceptoria que resolve a falta de acompanhamento prático.</p>
+            <ul>
+                <li>Suporte ao internato em tempo real.</li>
+                <li>Metodologia baseada em padrões de Toronto e Harvard.</li>
+                <li>Monitoramento de proficiência para o ENAMED.</li>
+            </ul>
+        </div>
+        <div class="int-card">
+            <h4>Blindagem Jurídico-Administrativa</h4>
+            <p>Como braço da PreceptorMed, fornecemos subsídios técnicos para que o jurídico das faculdades possa contestar ou atender medidas cautelares com provas de melhoria real.</p>
+            <ul>
+                <li>Dossiês de conformidade técnica.</li>
+                <li>Relatórios mensais de supervisão acadêmica.</li>
+                <li>Garantia de qualidade na preceptoria externa.</li>
+            </ul>
+        </div>
+        <div class="int-card">
+            <h4>Gestão de Redes de Preceptoria</h4>
+            <p>Terceirização inteligente da responsabilidade técnica do internato. Eliminamos o passivo logístico da faculdade na contratação e gestão de médicos preceptores.</p>
+            <ul>
+                <li>Seleção e curadoria de médicos sêniores.</li>
+                <li>Escalabilidade nacional via plataforma digital.</li>
+                <li>Redução de custos operacionais fixos.</li>
+            </ul>
+        </div>
+        <div class="int-card">
+            <h4>Fundo de Apoio Científico</h4>
+            <p>Modelo de negócio sustentável onde a universidade recebe suporte financeiro para pesquisa a partir da adesão dos alunos à plataforma.</p>
+            <ul>
+                <li>Investimento em infraestrutura institucional.</li>
+                <li>Fomento à produção científica local.</li>
+                <li>Alinhamento de interesses entre Aluno e Mantenedora.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="cta-box">
+        <h3 style="font-family: 'Libre Baskerville', serif; margin-bottom: 20px;">Proteja o Credenciamento da sua Instituição</h3>
+        <p style="margin-bottom: 30px;">Solicite uma análise preliminar de risco acadêmico e descubra como a PreceptorMed pode elevar a nota da sua faculdade.</p>
+        <a href="mailto:contato@preceptormed.com" class="btn-consultor">Falar com um Consultor Corporativo</a>
+    </div>
+</section>
+
+<!-- SEÇÃO 1: Metodologia Global -->
+<section class="sec-metodologia">
+    <span class="section-label">Metodologia</span>
+    <h2 class="section-title">Padrão global de Clinical Preceptoring</h2>
+    <p class="section-lead">Quatro pilares inspirados em Harvard e Toronto, adaptados à realidade regulatória e operacional das escolas médicas brasileiras.</p>
+    <div class="method-grid">
+        <div class="method-card">
+            <div class="method-num">01</div>
+            <h4>Olhar do Mestre</h4>
+            <p>Supervisão sênior contínua, com feedback estruturado e correção de rota no internato.</p>
+        </div>
+        <div class="method-card">
+            <div class="method-num">02</div>
+            <h4>Competências Clínicas</h4>
+            <p>Rubricas objetivas de performance alinhadas a indicadores ENAMED e MEC.</p>
+        </div>
+        <div class="method-card">
+            <div class="method-num">03</div>
+            <h4>Evidência Documentada</h4>
+            <p>Cada interação gera trilha auditável para reitoria, jurídico e órgãos reguladores.</p>
+        </div>
+        <div class="method-card">
+            <div class="method-num">04</div>
+            <h4>Escala Nacional</h4>
+            <p>Rede digital de preceptores permitindo cobertura multi-campus sem perda de qualidade.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 2: Dashboard 360 -->
+<section class="sec-dashboard">
+    <div>
+        <span class="section-label">Tecnologia</span>
+        <h2 class="section-title">Dashboard Reitoria 360º</h2>
+        <p class="section-lead">Visão executiva da preceptoria, risco acadêmico e conformidade, em um único painel para decisão institucional.</p>
+        <ul class="dash-features">
+            <li>Mapa de risco por curso, turma e hospital de ensino</li>
+            <li>Indicadores de supervisão e presença de preceptores</li>
+            <li>Alertas automáticos de não conformidade</li>
+            <li>Exportação de dossiês para processos MEC</li>
+        </ul>
+    </div>
+    <div class="dash-panel">
+        <div class="dash-row"><span>Instituições ativas</span><strong>99</strong></div>
+        <div class="dash-row"><span>Taxa de supervisão</span><strong class="ok">98,4%</strong></div>
+        <div class="dash-row"><span>Preceptores RQE +5</span><strong>1.240</strong></div>
+        <div class="dash-row"><span>Alertas abertos</span><strong>12</strong></div>
+        <div class="dash-row"><span>Conformidade média</span><strong class="ok">Verde</strong></div>
+    </div>
+</section>
+
+<!-- SEÇÃO 3: Rede de Preceptores -->
+<section class="sec-preceptores">
+    <span class="section-label">Rede Nacional</span>
+    <h2 class="section-title">Médicos preceptores de elite</h2>
+    <p class="section-lead">Curadoria rigorosa de profissionais com RQE e experiência comprovada, prontos para elevar o internato da sua instituição.</p>
+    <div class="preceptor-grid">
+        <div class="preceptor-card">
+            <div class="preceptor-icon">⚕</div>
+            <h4>Seleção e Curadoria</h4>
+            <p>Critérios técnicos, validação de RQE e histórico clínico antes de qualquer alocação em campo.</p>
+        </div>
+        <div class="preceptor-card">
+            <div class="preceptor-icon">◈</div>
+            <h4>Alocação Inteligente</h4>
+            <p>Matching por especialidade, carga horária e necessidade pedagógica de cada unidade hospitalar.</p>
+        </div>
+        <div class="preceptor-card">
+            <div class="preceptor-icon">▣</div>
+            <h4>Gestão Contínua</h4>
+            <p>Acompanhamento de performance, substituição ágil e relatórios mensais para a coordenação do curso.</p>
+        </div>
+    </div>
+</section>
+
+<!-- SEÇÃO 4: Conformidade MEC -->
+<section class="sec-conformidade">
+    <div class="conf-wrap">
+        <div>
+            <span class="section-label">Governança</span>
+            <h2 class="section-title">Conformidade MEC e blindagem institucional</h2>
+            <p class="section-lead">Da sala de aula ao jurídico: evidências concretas para proteger credenciamento e responder a medidas cautelares.</p>
+            <ul class="conf-list">
+                <li>
+                    <div class="badge">01</div>
+                    <div>
+                        <h4>Dossiês técnicos</h4>
+                        <p>Compilação automática de supervisões, cargas e indicadores por período avaliativo.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="badge">02</div>
+                    <div>
+                        <h4>Trilha auditável</h4>
+                        <p>Registros com carimbo temporal para auditorias internas e externas.</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="badge">03</div>
+                    <div>
+                        <h4>Suporte ao jurídico</h4>
+                        <p>Material preparado para contestações e atendimento a exigências regulatórias.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <aside class="conf-aside">
+            <h3>Pronto para a próxima avaliação?</h3>
+            <p>Receba um diagnóstico preliminar de risco acadêmico e um plano de intervenção de preceptoria sob medida.</p>
+            <div class="metric"><span>Foco regulatório</span><strong>MEC / ENAMED</strong></div>
+            <div class="metric"><span>Tempo médio de setup</span><strong>30 dias</strong></div>
+            <div class="metric"><span>Modelo</span><strong>B2B Institucional</strong></div>
+            <a href="mailto:contato@preceptormed.com" class="btn-consultor" style="margin-top: 32px;">Solicitar diagnóstico</a>
+        </aside>
+    </div>
+</section>
+
+<footer>
+    <div class="mega-footer-top">
+        <div class="footer-brand">
+            <h4>PRECEPTOR<span>MED</span></h4>
+            <p>©2026 Preceptor Technologies Inc. Líder em soluções de preceptoria médica de elite para universidades e redes hospitalares de ensino.</p>
+            <div class="footer-address">
+                <strong>Sede Administrativa</strong>
+                Belo Horizonte, Rua Alagoas, 1000 · Savassi<br>
+                contato@preceptormed.com<br>
+                CNPJ 55.444.333/0001-22
+            </div>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Empresa</h5>
+            <a href="quem-somos.html">Quem Somos</a>
+            <a href="metodologia.html">Metodologia</a>
+            <a href="empresa.html">Soluções Corporativas</a>
+            <a href="compliance.html">Compliance</a>
+            <a href="contatos.html">Contato</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Universidades</h5>
+            <a href="universidades.html">Dashboard Reitoria 360º</a>
+            <a href="preceptores.html">Rede de Preceptores</a>
+            <a href="metodologia.html">Intervenção Pedagógica</a>
+            <a href="compliance.html">Conformidade MEC</a>
+            <a href="faq.html">Modelos de Parceria</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Médicos</h5>
+            <a href="medicos.html">Dashboard Preceptor</a>
+            <a href="preceptores.html">Ser Preceptor</a>
+            <a href="compliance.html">Segurança & LGPD</a>
+            <a href="cadastre-se.html">Cadastro Médico</a>
+            <a href="faq.html">Clube de Benefícios</a>
+        </div>
+        <div class="mega-footer-col">
+            <h5>Suporte</h5>
+            <a href="faq.html">FAQ</a>
+            <a href="contatos.html">Ouvidoria</a>
+            <a href="contatos.html">Central de Ajuda</a>
+            <a href="mailto:contato@preceptormed.com">Imprensa</a>
+            <a href="cadastre-se.html">Login / Cadastro</a>
+        </div>
+    </div>
+
+    <div class="mega-footer-bottom">
+        <span>©2026 PreceptorMed Technologies Inc. Excelência em Gestão Acadêmica Médica.</span>
+        <div class="legal-links">
+            <a href="compliance.html">Termos de Uso B2B</a>
+            <a href="compliance.html">Privacidade de Dados</a>
+            <a href="compliance.html">Relatórios MEC</a>
+        </div>
+    </div>
+</footer>
+
+    <script src="widgets.js" defer></script>
+</body>
+</html>
